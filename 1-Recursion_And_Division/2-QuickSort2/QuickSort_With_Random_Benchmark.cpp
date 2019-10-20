@@ -3,10 +3,9 @@
 #include<vector>
 #include<algorithm>
 #include<ctime>
-//#include<cstdlib>
 using namespace std;
 
-#define MAX_LENTH 500 //待排序列长度
+#define MAX_LENTH 30000 //待排序列长度
 
 template<class Type>void QuickSort(Type a[], int p, int r);
 template<class Type>int Partition(Type a[], int p, int r);
@@ -17,11 +16,8 @@ int recursionCount = 0;
 
 int main()
 {
-	/*生成乱序序列*/
-	//vector<int> v;
-	//for (int i = 0; i < MAX_LENTH; i++)
-	//	v.push_back(i);
-	//random_shuffle(v.begin(), v.end());
+	clock_t start_time = clock();
+
 	int *a;
 	GenerateRandomArray(&a, MAX_LENTH);
 	cout << "待排序列：" << endl;
@@ -36,6 +32,10 @@ int main()
 	for (int i = 0; i < MAX_LENTH; i++)
 		cout << a[i] << ' ';
 	delete[] a;
+
+	clock_t end_time = clock();
+	cout << "Running time is: " << static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC * 1000 << "ms" << endl;    //CLOCKS_PER_SEC表示一秒钟内CPU运行的时钟周期数，用于将clock()函数的结果转化为以秒为单位的量
+
 	system("pause");
 	return 0;
 }

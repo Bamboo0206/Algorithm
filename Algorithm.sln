@@ -4,15 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Recursion_And_Division", "1-Recursion_And_Division", "{6C5C1BCF-0DA2-40DB-BFCF-B55540EF89AE}"
-	ProjectSection(SolutionItems) = preProject
-		1-Recursion_And_Division\2-QuickSort1\2-QuickSort1.vcxproj = 1-Recursion_And_Division\2-QuickSort1\2-QuickSort1.vcxproj
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-QuickSort2", "1-Recursion_And_Division\2-QuickSort2\2-QuickSort2.vcxproj", "{BF629C11-D499-47FD-A948-1D469800CD22}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1-MergeSort1", "1-Recursion_And_Division\1-MergeSort1\1-MergeSort1.vcxproj", "{F0F2C8D9-0F73-4B81-A8A1-A03E4661290E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-QuickSort1", "1-Recursion_And_Division\2-QuickSort1\2-QuickSort1.vcxproj", "{2EA83489-732A-4250-98D2-CDA8081F21AC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1-MergeSort2-Non-recursive", "1-Recursion_And_Division\1-MergeSort2-Non-recursive\1-MergeSort2-Non-recursive.vcxproj", "{5E0741ED-055F-4968-A871-B0776D420406}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,13 +45,23 @@ Global
 		{2EA83489-732A-4250-98D2-CDA8081F21AC}.Release|x64.Build.0 = Release|x64
 		{2EA83489-732A-4250-98D2-CDA8081F21AC}.Release|x86.ActiveCfg = Release|Win32
 		{2EA83489-732A-4250-98D2-CDA8081F21AC}.Release|x86.Build.0 = Release|Win32
+		{5E0741ED-055F-4968-A871-B0776D420406}.Debug|x64.ActiveCfg = Debug|x64
+		{5E0741ED-055F-4968-A871-B0776D420406}.Debug|x64.Build.0 = Debug|x64
+		{5E0741ED-055F-4968-A871-B0776D420406}.Debug|x86.ActiveCfg = Debug|Win32
+		{5E0741ED-055F-4968-A871-B0776D420406}.Debug|x86.Build.0 = Debug|Win32
+		{5E0741ED-055F-4968-A871-B0776D420406}.Release|x64.ActiveCfg = Release|x64
+		{5E0741ED-055F-4968-A871-B0776D420406}.Release|x64.Build.0 = Release|x64
+		{5E0741ED-055F-4968-A871-B0776D420406}.Release|x86.ActiveCfg = Release|Win32
+		{5E0741ED-055F-4968-A871-B0776D420406}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BF629C11-D499-47FD-A948-1D469800CD22} = {6C5C1BCF-0DA2-40DB-BFCF-B55540EF89AE}
+		{F0F2C8D9-0F73-4B81-A8A1-A03E4661290E} = {6C5C1BCF-0DA2-40DB-BFCF-B55540EF89AE}
 		{2EA83489-732A-4250-98D2-CDA8081F21AC} = {6C5C1BCF-0DA2-40DB-BFCF-B55540EF89AE}
+		{5E0741ED-055F-4968-A871-B0776D420406} = {6C5C1BCF-0DA2-40DB-BFCF-B55540EF89AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6528FF94-6BBC-403E-9926-AEB8682A9ECF}

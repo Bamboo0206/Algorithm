@@ -15,6 +15,8 @@ int recursionCount = 0;
 
 int main()
 {
+	clock_t start_time = clock();
+
 	int *a;
 	GenerateRandomArray(&a, MAX_LENTH);
 	cout << "待排序列：" << endl;
@@ -29,6 +31,10 @@ int main()
 	for (int i = 0; i < MAX_LENTH; i++)
 		cout << a[i] << ' ';
 	delete[] a;
+
+	clock_t end_time = clock();
+	cout << endl << "Running time is: " << static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC * 1000 << "ms" << endl;    //CLOCKS_PER_SEC表示一秒钟内CPU运行的时钟周期数，用于将clock()函数的结果转化为以秒为单位的量
+
 	system("pause");
 	return 0;
 }

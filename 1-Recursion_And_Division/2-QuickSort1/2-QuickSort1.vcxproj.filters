@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="QuickSort.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="QuickSort1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MergeSort-Recursive.cpp">
+    <ClCompile Include="MergeSort_Non-recursive.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
