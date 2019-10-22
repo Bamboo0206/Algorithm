@@ -112,3 +112,23 @@ void GenerateRandomArray(int **a, int maxNum)//生成随机整数序列
 	for (int i = 0; i < maxNum; i++)
 		(*a)[i] = v[i];
 }
+template<class Type>
+int DegreeOfDisorder(Type a[], int p, int r)
+{
+	int DD = 0;
+	for (int i = p; i <= r; i++)
+	{
+		for (int j = i + 1; j <= r; j++)
+		{
+			if (a[j] < a[i])
+				DD++;
+		}
+	}
+	return DD;
+}
+
+template<class Type>
+int AverageDegreeOfDisorder(Type a[], int p, int r)
+{
+	return DegreeOfDisorder(a, p, r) / (r - p + 1);//???????
+}

@@ -42,3 +42,5 @@ Type SelectBenchmark(Type a[], int p, int r, int k)//p数组左下标，r数组右下标，
 {
 	//排序可调用函数和在algorism库里https://zhidao.baidu.com/question/456561559.html
 }
+
+int DegreeOfDisorder
