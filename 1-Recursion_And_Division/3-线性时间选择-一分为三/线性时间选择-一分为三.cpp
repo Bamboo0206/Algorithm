@@ -51,9 +51,11 @@ Type RandomizedSelect(Type a[], int p, int r, int k)//ÔÚa[p:r]ÖĞÑ°ÕÒµÚkĞ¡ÔªËØ£¨Ê
 
 	int i = Partition(a, p, r);//½«Êı×é»®·ÖÎªÁ½²¿·Ö£¬iÎª»®·Ö»ù×¼µÄÏÂ±ê
 	int leftCnt = i - p + 1;//×ó¶ÎÔªËØ¸öÊı
-	if (k <= leftCnt) //Ñ°ÕÒµÄµÚkĞ¡ÔªËØÔÚ×ó×Ó¶ÎÖĞ
+	if (k-1 == i-p)
+		return a[i];
+	else if (k <= leftCnt) //Ñ°ÕÒµÄµÚkĞ¡ÔªËØÔÚ×ó×Ó¶ÎÖĞ
 	{
-		return RandomizedSelect(a, p, i, k);//Èı¶ÎÕâÀïÊÇi-1
+		return RandomizedSelect(a, p, i-1, k);//Èı¶ÎÕâÀïÊÇi-1
 	}
 	else//Ñ°ÕÒµÄµÚkĞ¡ÔªËØÔÚÓÒ×Ó¶ÎÖĞ
 	{
@@ -87,7 +89,7 @@ void SelectBenchmark(Type a[], int p, int r/*, int k*/)//½«ÖĞÎ»ÊıµÄÖĞÎ»Êı½»»»µ½Ê
 	//1. »®·ÖÎª5¸öÒ»×é
 	//2. Ã¿×éÅÅĞò
 	//3. ÕÒÖĞÎ»ÊıµÄÖĞÎ»Êı
-	if (r - p+1 <= 4) //ÔªËØ¸öÊıÉÙÓÚ5£¬Ö±½ÓÕû¸öÊı×éÅÅĞò
+	if (r - p + 1 <= 4) //ÔªËØ¸öÊıÉÙÓÚ5£¬Ö±½ÓÕû¸öÊı×éÅÅĞò
 	{
 		sort(a + p, a + r + 1);//Òª+1
 		swap(a[p], a[(p + r) / 2]);
@@ -102,11 +104,9 @@ void SelectBenchmark(Type a[], int p, int r/*, int k*/)//½«ÖĞÎ»ÊıµÄÖĞÎ»Êı½»»»µ½Ê
 		swap(a[p + i], a[s + 2]);//½«Ğ¡×éÄÚÖĞÎ»Êı½»»»µ½Êı×éÇ°¶Ë
 	}
 	/*È¡ÖĞÎ»ÊıµÄÖĞÎ»Êı*/
-	sort(a + p, a + (p+ subarrCnt));
+	sort(a + p, a + (p + subarrCnt));
 	swap(a[p], a[(p + p + subarrCnt - 1) / 2]);//½«ÖĞÎ»Êı½»»»µ½Êı×éµÚÒ»¸öÔªËØ£¬Ö®ºóÒÔËü×÷Îª»®·Ö»ù×¼
 }
-
-
 
 void GenerateRandomArray(int **a, int maxNum)//Éú³ÉËæ»úÕûÊıĞòÁĞ
 {
