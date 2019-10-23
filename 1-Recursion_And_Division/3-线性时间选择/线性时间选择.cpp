@@ -4,23 +4,65 @@
 #include<ctime>
 using namespace std;
 
+#define MAX_LENTH 50000 //´ıÅÅĞòÁĞ³¤¶È
+#define FIND_INDEX 4	//²éÕÒµÚFIND_INDEXĞ¡ÔªËØ£¬FIND_INDEX< MAX_LENTH 
+
+template<class Type> Type RandomizedSelect(Type a[], int p, int r, int k);//ÔÚa[p:r]ÖĞÑ°ÕÒµÚkĞ¡ÔªËØ£¨Êı×éÏÂ±ê°üº¬r£©
+template<class Type> int Partition(Type a[], int p, int r);//Ñ¡ÔñÒ»¸öÔªËØ×÷Îª»ù×¼£¬½«Êı×é»®·ÖÎªÁ½²¿·Ö£¬×ó×Ó¶ÎÔªËØ¾ùĞ¡ÓÚ»ù×¼£¬ÓÒ×Ó¶ÎÔªËØ¾ù´óÓÚ»ù×¼¡£·µ»Ø»ù×¼index
+template<class Type> void SelectBenchmark(Type a[], int p, int r/*, int k*/);//½«ÖĞÎ»ÊıµÄÖĞÎ»Êı½»»»µ½Êı×éµÚÒ»¸öÎ»ÖÃ£¬Ö®ºóÒÔÊı×éµÚÒ»¸öÔªËØ×÷Îª»®·Ö»ù×¼
+void GenerateRandomArray(int **a, int maxNum);//Éú³ÉËæ»úÕûÊıĞòÁĞ
+
+int main()
+{
+	clock_t start_time = clock();
+
+	int *a;
+	GenerateRandomArray(&a, MAX_LENTH);
+
+	int result = RandomizedSelect(a, 0, MAX_LENTH - 1, FIND_INDEX);
+
+	cout << "µÚ" << FIND_INDEX << "Ğ¡ÔªËØÊÇ£º" << result << endl;
+
+	delete[] a;
+
+	clock_t end_time = clock();
+	cout << endl << "Running time is: " << static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC * 1000 << "ms" << endl;    //CLOCKS_PER_SEC±íÊ¾Ò»ÃëÖÓÄÚCPUÔËĞĞµÄÊ±ÖÓÖÜÆÚÊı£¬ÓÃÓÚ½«clock()º¯ÊıµÄ½á¹û×ª»¯ÎªÒÔÃëÎªµ¥Î»µÄÁ¿
+
+
+
+	system("pause");
+	return 0;
+}
+
 template<class Type>
 Type RandomizedSelect(Type a[], int p, int r, int k)//ÔÚa[p:r]ÖĞÑ°ÕÒµÚkĞ¡ÔªËØ£¨Êı×éÏÂ±ê°üº¬r£©
 {
 	if (p == r) //Ö»ÓĞÒ»¸öÔªËØ£¨¼ÙÉèÊäÈëÕıÈ·
 		return a[p];
 
+	if (r - p < 20) //ÔªËØ¸öÊı×ã¹»ÉÙ£¬Ö±½ÓÕû¸öÊı×éÅÅĞò
+	{
+		sort(a + p, a + r + 1);//Òª+1
+
+		return a[p + k - 1];
+	}
+
 	int i = Partition(a, p, r);//½«Êı×é»®·ÖÎªÁ½²¿·Ö£¬iÎª»®·Ö»ù×¼µÄÏÂ±ê
 	int leftCnt = i - p + 1;//×ó¶ÎÔªËØ¸öÊı
-	if (k <= j) //Ñ°ÕÒµÄµÚkĞ¡ÔªËØÔÚ×ó×Ó¶ÎÖĞ
+	if (k <= leftCnt) //Ñ°ÕÒµÄµÚkĞ¡ÔªËØÔÚ×ó×Ó¶ÎÖĞ
+	{
 		return RandomizedSelect(a, p, i, k);//Èı¶ÎÕâÀïÊÇi-1
+	}
 	else//Ñ°ÕÒµÄµÚkĞ¡ÔªËØÔÚÓÒ×Ó¶ÎÖĞ
+	{
 		return RandomizedSelect(a, i + 1, r, k - leftCnt);
+	}
 }
 
 template<class Type>
 int Partition(Type a[], int p, int r)//Ñ¡ÔñÒ»¸öÔªËØ×÷Îª»ù×¼£¬½«Êı×é»®·ÖÎªÁ½²¿·Ö£¬×ó×Ó¶ÎÔªËØ¾ùĞ¡ÓÚ»ù×¼£¬ÓÒ×Ó¶ÎÔªËØ¾ù´óÓÚ»ù×¼¡£·µ»Ø»ù×¼index
 {
+	SelectBenchmark(a, p, r);
 	Type x = a[p];//È¡Êı×éµÚÒ»¸öÔªËØ×÷Îª»®·Ö»ù×¼
 	int i = p, j = r + 1;//³õÊ¼»¯×óÓÒÁ½¸öÖ¸Õë
 	/*·Ö±ğ´Ó×óÏòÓÒºÍ´ÓÓÒÏò×óÉ¨Ãè£¬½»»»×ó±ß>xºÍÓÒ±ß<xµÄÔªËØ*/
@@ -29,7 +71,7 @@ int Partition(Type a[], int p, int r)//Ñ¡ÔñÒ»¸öÔªËØ×÷Îª»ù×¼£¬½«Êı×é»®·ÖÎªÁ½²¿·Ö£
 		while (a[++i] < x && i < r);//ÕÒ×ó±ß´óÓÚ»ù×¼µÄÔªËØ
 		while (a[--j] > x);//ÕÒÓÒ±ßĞ¡ÓÚ»ù×¼µÄÔªËØ
 		if (i >= j) break;
-		Swap(a[i], a[j]);
+		swap(a[i], a[j]);
 	}
 	/*½»»»a[p]ºÍa[j]*/
 	a[p] = a[j];
@@ -38,9 +80,39 @@ int Partition(Type a[], int p, int r)//Ñ¡ÔñÒ»¸öÔªËØ×÷Îª»ù×¼£¬½«Êı×é»®·ÖÎªÁ½²¿·Ö£
 }
 
 template<class Type>
-Type SelectBenchmark(Type a[], int p, int r, int k)//pÊı×é×óÏÂ±ê£¬rÊı×éÓÒÏÂ±ê£¬
+void SelectBenchmark(Type a[], int p, int r/*, int k*/)//½«ÖĞÎ»ÊıµÄÖĞÎ»Êı½»»»µ½Êı×éµÚÒ»¸öÎ»ÖÃ¡£pÊı×é×óÏÂ±ê£¬rÊı×éÓÒÏÂ±ê
 {
-	//ÅÅĞò¿Éµ÷ÓÃº¯ÊıºÍÔÚalgorism¿âÀïhttps://zhidao.baidu.com/question/456561559.html
+	//1. »®·ÖÎª5¸öÒ»×é
+	//2. Ã¿×éÅÅĞò
+	//3. ÕÒÖĞÎ»ÊıµÄÖĞÎ»Êı
+	if (r - p+1 <= 4) //ÔªËØ¸öÊıÉÙÓÚ5£¬Ö±½ÓÕû¸öÊı×éÅÅĞò
+	{
+		sort(a + p, a + r + 1);//Òª+1
+		swap(a[p], a[(p + r) / 2]);
+	}
+
+	int subarrCnt = (r - p - 4) / 5 + 1;
+	for (int i = 0; i < subarrCnt; i++)//»®·ÖÎª5¸öÒ»×é,²¢ÅÅĞò
+	{
+		int s = p + 5 * i;//×ÓÊı×éÆğµãÏÂ±ê
+		int t = s + 4;//×ÓÊı×éÖÕµãÏÂ±ê
+		sort(a + s, a + t + 1);
+		swap(a[p + i], a[s + 2]);//½«Ğ¡×éÄÚÖĞÎ»Êı½»»»µ½Êı×éÇ°¶Ë
+	}
+	/*È¡ÖĞÎ»ÊıµÄÖĞÎ»Êı*/
+	sort(a + p, a + (p+ subarrCnt));
+	swap(a[p], a[(p + p + subarrCnt - 1) / 2]);//½«ÖĞÎ»Êı½»»»µ½Êı×éµÚÒ»¸öÔªËØ£¬Ö®ºóÒÔËü×÷Îª»®·Ö»ù×¼
 }
 
-int DegreeOfDisorder
+
+
+void GenerateRandomArray(int **a, int maxNum)//Éú³ÉËæ»úÕûÊıĞòÁĞ
+{
+	vector<int> v;
+	for (int i = 0; i < maxNum; i++)
+		v.push_back(i);
+	random_shuffle(v.begin(), v.end());
+	*a = new int[maxNum];
+	for (int i = 0; i < maxNum; i++)
+		(*a)[i] = v[i];
+}
