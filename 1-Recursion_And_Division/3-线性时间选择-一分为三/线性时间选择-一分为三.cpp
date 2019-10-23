@@ -2,10 +2,11 @@
 #include<vector>
 #include<algorithm>
 #include<ctime>
+#include<fstream>
 using namespace std;
 
-#define MAX_LENTH 50 //待排序列长度
-#define FIND_INDEX 25	//查找第FIND_INDEX小元素，FIND_INDEX< MAX_LENTH 
+#define MAX_LENTH 1033 //待排序列长度
+#define FIND_INDEX 50	//查找第FIND_INDEX小元素，FIND_INDEX< MAX_LENTH 
 
 template<class Type> Type RandomizedSelect(Type a[], int p, int r, int k);//在a[p:r]中寻找第k小元素（数组下标包含r）
 template<class Type> int Partition(Type a[], int p, int r);//选择一个元素作为基准，将数组划分为两部分，左子段元素均小于基准，右子段元素均大于基准。返回基准index
@@ -18,15 +19,26 @@ int main()
 {
 	clock_t start_time = clock();
 
-	int *a;
-	GenerateRandomArray(&a, MAX_LENTH);
+	float *a = new float[MAX_LENTH];
+	//GenerateRandomArray(&a, MAX_LENTH);
+	ifstream fs("k-distANSI.txt", ios::in);
+	if (!fs) {
+		cout << "打开文件失败"; return 0;
+	}
+	fs.seekg(0, fstream::beg);
+	int cnt = 0;
+	for ( cnt = 0; fs >> a[cnt]; cnt++);
+	fs.close();
+	//for (int i = 0; i <= cnt; i++)
+	//	cout << a[i] << ' ';
+	//cout << endl;
 
-	int result = RandomizedSelect(a, 0, MAX_LENTH - 1, FIND_INDEX);
+	float result = RandomizedSelect(a, 0, cnt, FIND_INDEX);
 
 	cout << "第" << FIND_INDEX << "小元素是：" << result << endl;
 	cout << "递归层数：" << recursionCount << endl;
 
-	delete[] a;
+	//delete [] a;//??????????????
 
 	clock_t end_time = clock();
 	cout << endl << "Running time is: " << static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC * 1000 << "ms" << endl;    //CLOCKS_PER_SEC表示一秒钟内CPU运行的时钟周期数，用于将clock()函数的结果转化为以秒为单位的量
