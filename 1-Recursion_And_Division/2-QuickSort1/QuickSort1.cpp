@@ -10,6 +10,8 @@ template<class Type>void QuickSort(Type a[], int p, int r);
 template<class Type>int Partition(Type a[], int p, int r);
 template<class Type>void Swap(Type &a, Type &b);
 void GenerateRandomArray(int **a, int maxNum);//生成随机整数序列
+template<class Type> int DegreeOfDisorder(Type a[], int p, int r);
+template<class Type> int AverageDegreeOfDisorder(Type a[], int p, int r);
 
 int recursionCount = 0;
 
@@ -23,7 +25,9 @@ int main()
 	for (int i = 0; i < MAX_LENTH; i++)
 		cout << a[i] << ' ';
 	cout << endl;
-
+	int DD=DegreeOfDisorder(a, 0, MAX_LENTH-1);
+	int ADD=AverageDegreeOfDisorder(a, 0, MAX_LENTH - 1);
+	cout << "ADD:" << ADD << "\tDD:" << DD << endl;
 	QuickSort(a, 0, MAX_LENTH - 1);
 
 	cout << "递归层数：" << recursionCount << endl;
@@ -107,7 +111,7 @@ void GenerateRandomArray(int **a, int maxNum)//生成随机整数序列
 	vector<int> v;
 	for (int i = 0; i < maxNum; i++)
 		v.push_back(i);
-	random_shuffle(v.begin(), v.end());
+	random_shuffle(v.begin()+100, v.end());//改ADD修改这里
 	*a = new int[maxNum];
 	for (int i = 0; i < maxNum; i++)
 		(*a)[i] = v[i];

@@ -6,7 +6,7 @@
 #include<sstream>
 using namespace std;
 
-#define PointX_NUM 10 //Êý¾Ý¸öÊý//1032
+#define PointX_NUM 1032 //Êý¾Ý¸öÊý//1032
 class PointX
 {
 public:
@@ -111,7 +111,7 @@ int main()
 	PointX *X = new PointX[(int)PointX_NUM];
 	PointY *Y = new PointY[(int)PointX_NUM];
 	PointY *Z = new PointY[(int)PointX_NUM];
-	ifstream fs("test.txt", ios::in);
+	ifstream fs("data2.txt", ios::in);
 	if (!fs) {
 		cout << "´ò¿ªÎÄ¼þÊ§°Ü"; return 0;
 	}
@@ -140,9 +140,9 @@ int main()
 	Cpair2(X, Y, Z, PointX_NUM, a, b, d);
 
 	cout << "×î½üµã¶ÔÊÇ£º" << endl << a << "\t" << b << endl << "×î¶Ì¾àÀëÊÇ£º" << d << endl;
-	for (int i = 0; i < PointX_NUM; i++)
-		cout << X[i] << ' ';
-	cout << endl;
+	//for (int i = 0; i < PointX_NUM; i++)
+	//	cout << X[i] << ' ';
+	//cout << endl;
 
 	//delete[] X;//??????????????
 	//delete[] Y;
@@ -238,19 +238,30 @@ void closest(PointX X[], PointY Y[], PointY Z[], //XÒÔx×ø±êÅÅÐòµÄµã£¬YÒÔy×ø±êÅÅÐ
 	int m = (l + r) / 2;//mÊÇÖÐÎ»Êý
 	int f = l, g = m + 1;//f,g·Ö±ðÊÇ×ó°ë¶ÎºÍÓÒ°ë¶ÎÏÂ±êÆðµã
 	for (int i = l; i <= r; i++)//½«Y[]ÔÚ·Ö½çÏß£¨xÖÐÎ»Êý£©×ó±ßµÄ·ÅÔÚZ×ó°ë¶Î£¬·ñÔòÓÒ°ë¶Î//?????????????
-	{
-		//if (Y[i].x < m) Z[f++] = Y[i]; //Ô½½ç£¿
-		if (Y[i].x < X[m].x) Z[f++] = Y[i];//???????????
-		else Z[g++] = Y[i];
-	}
-	for (int i = l; i <=r; i++)
-		cout << Z[i] << ' ';
-	cout << endl;
+	{//Z[]´æ·Åp1µ½p2ÄÚ°´y×ø±êÅÅÐòµÄµã
 
-	closest(X, Y, Z, l, m, a, b, d);//Çó×ó°ë¶Î×îÐ¡¾àÀë
+		if (Y[i].x < X[m].x) Z[f++] = Y[i];//???????????//?????????????????????????????????????????????????????????????????????????????????????????
+		else if(Y[i].x > X[m].x) Z[g++] = Y[i];
+		else//ÏàµÈ¡£·ÅÄÄ±ß¶¼ÐÐ
+		{
+			if (f <= m)//×ó±ß»¹Ã»Âú£¬·Å×ó±ß
+				Z[f++] = Y[i];
+			else if (g <= r)//×ó±ßÂúÁËÓÒ±ßÃ»Âú£¬·ÅÓÒ±ß
+				Z[g++] = Y[i];
+			else
+				cerr << "³öÎÊÌâÁË´ó¸ç";
+		}
+		//if (Y[i].x > m) Z[g++] = Y[i]; //Ô½½ç£¿
+		//else Z[f++] = Y[i];
+	}
+	//for (int i = l; i <=r; i++)//²é¿´×îºóµÄfºÍg
+	//	cout << z[i] << ' ';
+	//cout << endl;
+
+	closest(X, Z, Y, l, m, a, b, d);//Çó×ó°ë¶Î×îÐ¡¾àÀë
 	double dr;//ÓÒ±ß×î¶Ì¾àÀë
 	PointX ar, br;
-	closest(X, Y, Z, m + 1, r, ar, br, dr);
+	closest(X, Z, Y, m + 1, r, ar, br, dr);
 	if (dr < d)//È¡×ó¶ÎºÍÓÒ¶Î½ÏÐ¡Õß
 	{
 		a = ar;
