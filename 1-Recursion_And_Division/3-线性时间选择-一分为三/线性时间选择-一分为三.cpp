@@ -19,7 +19,7 @@ int main()
 {
 	clock_t start_time = clock();
 
-	float *a = new float[MAX_LENTH];
+	double *a = new double[MAX_LENTH];
 	//GenerateRandomArray(&a, MAX_LENTH);
 	ifstream fs("k-distANSI.txt", ios::in);
 	if (!fs) {
@@ -33,7 +33,7 @@ int main()
 	//	cout << a[i] << ' ';
 	//cout << endl;
 
-	float result = RandomizedSelect(a, 0, cnt, FIND_INDEX);
+	double result = RandomizedSelect(a, 0, cnt, FIND_INDEX);
 
 	cout << "第" << FIND_INDEX << "小元素是：" << result << endl;
 	cout << "递归层数：" << recursionCount << endl;
