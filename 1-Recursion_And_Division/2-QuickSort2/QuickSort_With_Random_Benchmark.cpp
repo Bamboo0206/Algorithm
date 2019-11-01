@@ -11,6 +11,8 @@ template<class Type>void QuickSort(Type a[], int p, int r);
 template<class Type>int Partition(Type a[], int p, int r);
 template<class Type>void Swap(Type &a, Type &b);
 void GenerateRandomArray(int **a, int maxNum);//生成随机整数序列
+template<class Type> int DegreeOfDisorder(Type a[], int p, int r);
+template<class Type> int AverageDegreeOfDisorder(Type a[], int p, int r);
 
 int recursionCount = 0;
 
@@ -20,17 +22,20 @@ int main()
 
 	int *a;
 	GenerateRandomArray(&a, MAX_LENTH);
+	int DD = DegreeOfDisorder(a, 0, MAX_LENTH - 1);
+	int ADD = AverageDegreeOfDisorder(a, 0, MAX_LENTH - 1);
+	cout << "ADD:" << ADD << "\tDD:" << DD << endl;
 	cout << "待排序列：" << endl;
-	for (int i = 0; i < MAX_LENTH; i++)
+	/*for (int i = 0; i < MAX_LENTH; i++)
 		cout << a[i] << ' ';
-	cout << endl;
+	cout << endl;*/
 
 	QuickSort(a, 0, MAX_LENTH - 1);
 
 	cout << "递归层数：" << recursionCount << endl;
-	cout << "排序后的序列：" << endl;
+	/*cout << "排序后的序列：" << endl;
 	for (int i = 0; i < MAX_LENTH; i++)
-		cout << a[i] << ' ';
+		cout << a[i] << ' ';*/
 	delete[] a;
 
 	clock_t end_time = clock();
@@ -116,4 +121,25 @@ void GenerateRandomArray(int **a, int maxNum)//生成随机整数序列
 	*a = new int[maxNum];
 	for (int i = 0; i < maxNum; i++)
 		(*a)[i] = v[i];
+}
+
+template<class Type>
+int DegreeOfDisorder(Type a[], int p, int r)
+{
+	int DD = 0;
+	for (int i = p; i <= r; i++)
+	{
+		for (int j = i + 1; j <= r; j++)
+		{
+			if (a[j] < a[i])
+				DD++;
+		}
+	}
+	return DD;
+}
+
+template<class Type>
+int AverageDegreeOfDisorder(Type a[], int p, int r)
+{
+	return DegreeOfDisorder(a, p, r) / (r - p + 1);
 }

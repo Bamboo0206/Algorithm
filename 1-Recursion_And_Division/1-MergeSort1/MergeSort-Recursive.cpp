@@ -4,12 +4,15 @@
 #include<ctime>
 using namespace std;
 
-#define MAX_LENTH 500 //待排序列长度
+#define MAX_LENTH 2000 //待排序列长度
 int recursionCount = 0;
 
 template <class Type>void MergeSort(Type a[], Type temp[], int left, int right);
 template <class Type>void Merge(Type a[], Type temp[], int l, int m, int r);
 void GenerateRandomArray(int **a, int maxNum);//生成随机整数序列
+template<class Type> int DegreeOfDisorder(Type a[], int p, int r);
+template<class Type> int AverageDegreeOfDisorder(Type a[], int p, int r);
+
 
 int main()
 {
@@ -17,18 +20,22 @@ int main()
 
 	int *a;
 	GenerateRandomArray(&a, MAX_LENTH);
-	cout << "待排序列：" << endl;
-	for (int i = 0; i < MAX_LENTH; i++)
-		cout << a[i] << ' ';
-	cout << endl;
+
+	int DD = DegreeOfDisorder(a, 0, MAX_LENTH - 1);
+	int ADD = AverageDegreeOfDisorder(a, 0, MAX_LENTH - 1);
+	cout << "ADD:" << ADD << "\tDD:" << DD << endl;
+	//cout << "待排序列：" << endl;
+	//for (int i = 0; i < MAX_LENTH; i++)
+	//	cout << a[i] << ' ';
+	//cout << endl;
 
 	int temp[MAX_LENTH];
 	MergeSort(a, temp, 0, MAX_LENTH - 1);
 
 	cout << "递归层数：" << recursionCount << endl;
-	cout << "排序后的序列：" << endl;
-	for (int i = 0; i < MAX_LENTH; i++)
-		cout << a[i] << ' ';
+	//cout << "排序后的序列：" << endl;
+	//for (int i = 0; i < MAX_LENTH; i++)
+	//	cout << a[i] << ' ';
 	delete[] a;
 
 	clock_t end_time = clock();
@@ -84,4 +91,25 @@ void GenerateRandomArray(int **a, int maxNum)//生成随机整数序列
 	*a = new int[maxNum];
 	for (int i = 0; i < maxNum; i++)
 		(*a)[i] = v[i];
+}
+
+template<class Type>
+int DegreeOfDisorder(Type a[], int p, int r)
+{
+	int DD = 0;
+	for (int i = p; i <= r; i++)
+	{
+		for (int j = i + 1; j <= r; j++)
+		{
+			if (a[j] < a[i])
+				DD++;
+		}
+	}
+	return DD;
+}
+
+template<class Type>
+int AverageDegreeOfDisorder(Type a[], int p, int r)
+{
+	return DegreeOfDisorder(a, p, r) / (r - p + 1);
 }

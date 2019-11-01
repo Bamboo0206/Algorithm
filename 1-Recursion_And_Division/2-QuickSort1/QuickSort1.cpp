@@ -4,7 +4,7 @@
 #include<ctime>
 using namespace std;
 
-#define MAX_LENTH 500 //待排序列长度
+#define MAX_LENTH 30000 //待排序列长度
 
 template<class Type>void QuickSort(Type a[], int p, int r);
 template<class Type>int Partition(Type a[], int p, int r);
@@ -21,19 +21,19 @@ int main()
 
 	int *a;
 	GenerateRandomArray(&a, MAX_LENTH);
-	cout << "待排序列：" << endl;
-	for (int i = 0; i < MAX_LENTH; i++)
-		cout << a[i] << ' ';
-	cout << endl;
+	//cout << "待排序列：" << endl;
+	//for (int i = 0; i < MAX_LENTH; i++)
+	//	cout << a[i] << ' ';
+	//cout << endl;
 	int DD=DegreeOfDisorder(a, 0, MAX_LENTH-1);
 	int ADD=AverageDegreeOfDisorder(a, 0, MAX_LENTH - 1);
 	cout << "ADD:" << ADD << "\tDD:" << DD << endl;
 	QuickSort(a, 0, MAX_LENTH - 1);
 
 	cout << "递归层数：" << recursionCount << endl;
-	cout << "排序后的序列：" << endl;
-	for (int i = 0; i < MAX_LENTH; i++)
-		cout << a[i] << ' ';
+	//cout << "排序后的序列：" << endl;
+	//for (int i = 0; i < MAX_LENTH; i++)
+	//	cout << a[i] << ' ';
 	delete[] a;
 
 	clock_t end_time = clock();
@@ -111,7 +111,7 @@ void GenerateRandomArray(int **a, int maxNum)//生成随机整数序列
 	vector<int> v;
 	for (int i = 0; i < maxNum; i++)
 		v.push_back(i);
-	random_shuffle(v.begin()+100, v.end());//改ADD修改这里
+	random_shuffle(v.begin()+2000, v.end());//改ADD修改这里
 	*a = new int[maxNum];
 	for (int i = 0; i < maxNum; i++)
 		(*a)[i] = v[i];

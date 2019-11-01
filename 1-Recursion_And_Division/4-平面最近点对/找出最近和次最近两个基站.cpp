@@ -119,11 +119,9 @@ int main()
 	if (!fs) {
 		cout << "´ò¿ªÎÄ¼şÊ§°Ü"; return 0;
 	}
-	//fs.seekg(0, fstream::beg);
 	int cnt = 0;
 	string lineStr;
 	char ch;
-	//getline(fs, lineStr);
 	for (int i=0;getline(fs,lineStr);i++)
 	{
 		stringstream ss(lineStr);
@@ -135,9 +133,6 @@ int main()
 
 	fs.close();
 
-	/*for (int i = 0; i < PointX_NUM; i++)
-		cout << X[i] << ' ';
-	cout << endl;*/
 
 	PointX a, b;
 	double d;
@@ -147,13 +142,30 @@ int main()
 
 	secondCpair2(X, Y, Z, PointX_NUM, a, b, d);
 	cout << "´Î×î½üµã¶ÔÊÇ£º" << endl << a << "\t" << b << endl << "´Î×î¶Ì¾àÀëÊÇ£º" << d << endl;
-	//for (int i = 0; i < PointX_NUM; i++)
-	//	cout << X[i] << ' ';
-	//cout << endl;
 
-	//delete[] X;//??????????????
-	//delete[] Y;
-	//delete[] Z;
+	/*±©Á¦Çî¾ÙÑéÖ¤ÕıÈ·ĞÔ*/
+	//d = 1000;
+	//double tempd;
+	//for (int i = 0; i < pointx_num; i++)
+	//{
+	//	for (int j = i+1; j < pointx_num; j++)
+	//	{
+	//		tempd = distance(x[i], x[j]);
+	//		if (tempd < d)
+	//		{
+	//			d = tempd;
+	//			a = x[i];
+	//			b = x[j];
+	//		}
+	//	}
+	//}
+	//cout << "×î½üµã¶ÔÊÇ£º" << endl << a << "\t" << b << endl << "×î¶Ì¾àÀëÊÇ£º" << d << endl;
+
+	delete[] X;
+	delete[] Y;
+	delete[] Z;
+	
+
 
 	clock_t end_time = clock();
 	cout << endl << "Running time is: " << static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC * 1000 << "ms" << endl;    //CLOCKS_PER_SEC±íÊ¾Ò»ÃëÖÓÄÚCPUÔËĞĞµÄÊ±ÖÓÖÜÆÚÊı£¬ÓÃÓÚ½«clock()º¯ÊıµÄ½á¹û×ª»¯ÎªÒÔÃëÎªµ¥Î»µÄÁ¿
@@ -190,8 +202,6 @@ void Merge(Type a[], Type b[], int l, int m, int r)//a[]´ıÅÅÊı×é£¬b[]Ä¿±êÊı×é,Èı
 		while (i <= m)//×ó×Ó¶ÎÓĞÊ£ÓàÔªËØ
 			b[k++] = a[i++];
 
-	//for (int x = l; x <= r; x++)//½«¸¨ÖúÊı×éÀïµÄÓĞĞòÊı×é¿½±´»ØÊı×éa
-	//	a[x] = temp[x];
 }
 
 bool Cpair2(PointX X[], PointY Y[], PointY Z[], int n, PointX &a, PointX &b, double& d)
@@ -249,20 +259,12 @@ void closest(PointX X[], PointY Y[], PointY Z[], //XÒÔx×ø±êÅÅĞòµÄµã£¬YÒÔy×ø±êÅÅĞ
 	for (int i = l; i <= r; i++)//½«Y[]ÔÚ·Ö½çÏß£¨xÖĞÎ»Êı£©×ó±ßµÄ·ÅÔÚZ×ó°ë¶Î£¬·ñÔòÓÒ°ë¶Î//?????????????
 	{//Z[]´æ·Åp1µ½p2ÄÚ°´y×ø±êÅÅĞòµÄµã
 
-		if (Y[i].x < X[m].x) Z[f++] = Y[i];//???????????//?????????????????????????????????????????????????????????????????????????????????????????
+		if (Y[i].x < X[m].x) Z[f++] = Y[i];
 		else if(Y[i].x > X[m].x) Z[g++] = Y[i];
-		else//ÏàµÈ¡£·ÅÄÄ±ß¶¼ĞĞ
+		else//ÏàµÈ£¬ÏÈÔİÊ±·ÅÔÚtempIÊı×éÀï£¬µÈµ½·ÖÍêËùÓĞÔªËØºóÔÙÓÃtempIÊı×éÀïµÄÔªËØÌî³äÂúÊı×é£¬Ê¹Á½¸öÊı×é´óĞ¡Ò»Ñù¡£
 		{
 			tempP[tempI++] = Y[i];
-			//if (f <= m)//×ó±ß»¹Ã»Âú£¬·Å×ó±ß
-			//	Z[f++] = Y[i];
-			//else if (g <= r)//×ó±ßÂúÁËÓÒ±ßÃ»Âú£¬·ÅÓÒ±ß
-			//	Z[g++] = Y[i];
-			//else
-			//	cerr << "³öÎÊÌâÁË´ó¸ç";
 		}
-		//if (Y[i].x > m) Z[g++] = Y[i]; //Ô½½ç£¿
-		//else Z[f++] = Y[i];
 	}
 	for (int i = 0; i < tempI; i++)
 	{
@@ -271,11 +273,8 @@ void closest(PointX X[], PointY Y[], PointY Z[], //XÒÔx×ø±êÅÅĞòµÄµã£¬YÒÔy×ø±êÅÅĞ
 		else if (g <= r)//×ó±ßÂúÁËÓÒ±ßÃ»Âú£¬·ÅÓÒ±ß
 			Z[g++] = tempP[i];
 		else
-			cerr << "³öÎÊÌâÁË´ó¸ç";
+			cerr << "Z[] array error";
 	}
-	//for (int i = l; i <=r; i++)//²é¿´×îºóµÄfºÍg
-	//	cout << z[i] << ' ';
-	//cout << endl;
 
 	closest(X, Z, Y, l, m, a, b, d);//Çó×ó°ë¶Î×îĞ¡¾àÀë
 	double dr;//ÓÒ±ß×î¶Ì¾àÀë
@@ -289,7 +288,6 @@ void closest(PointX X[], PointY Y[], PointY Z[], //XÒÔx×ø±êÅÅĞòµÄµã£¬YÒÔy×ø±êÅÅĞ
 	}
 
 	Merge(Z, Y, l, m, r);//½«ZÀïµÄÁ½¶ÎÊı×éºÏ²¢·Å»ØY
-	//merge(Z+l,Z+m+1,Z+m+1,Z+r+1,Y)
 
 	int k = l;
 	for (int i = l; i <= r; i++)//½«·Ö½çÏß2d·¶Î§ÄÚµÄµã¿½µ½ZÊı×é
