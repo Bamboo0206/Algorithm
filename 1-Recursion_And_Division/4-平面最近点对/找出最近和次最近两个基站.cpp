@@ -100,11 +100,13 @@ ostream & operator<<(ostream & os, const PointY & p)
 
 
 
-bool Cpair2(PointX X[], PointY Y[], PointY Z[], int n, PointX &a, PointX &b, double& d);
-void closest(PointX X[], PointY Y[], PointY Z[], //XÒÔx×ø±êÅÅĞòµÄµã£¬YÒÔy×ø±êÅÅĞòµÄµã£¬Z´æ·Å·Ö½çÏß·¶Î§ÄÚµÄµã
-	int l, int r, PointX& a, PointX &b, double& d);//l×ó¶Ëµã£¬rÓÒ¶Ëµã£¨°üº¬r£©£¬a,bÊÇÁ½¸ö×î½üµÄµã£¬d×î¶Ì¾àÀë
+bool Cpair2(PointX X[], PointY Y[], PointY Z[], int n, PointX &a, PointX &b, double& d);//Æ½Ãæ×î½üµã¶Ô
+bool secondCpair2(PointX X[], PointY Y[], PointY Z[], int n, PointX &a, PointX &b, double& d);//Æ½Ãæ´Î×î½üµã¶Ô
+void closest(PointX X[], PointY Y[], PointY Z[], int l, int r, PointX& a, PointX &b, double& d);//XÒÔx×ø±êÅÅĞòµÄµã£¬YÒÔy×ø±êÅÅĞòµÄµã£¬Z´æ·Å·Ö½çÏß·¶Î§ÄÚµÄµã ,l×ó¶Ëµã£¬rÓÒ¶Ëµã£¨°üº¬r£©£¬a,bÊÇÁ½¸ö×î½üµÄµã£¬d×î¶Ì¾àÀë
 template<class Type> inline double distance(const Type& u, const Type&v);
 template <class Type> void Merge(Type a[], Type b[], int l, int m, int r);//a[]´ıÅÅÊı×é£¬b[]Ä¿±êÊı×é,Èı¸ö²ÎÊı·Ö±ğÊÇÊı×éÏÂ±êleft£¬middle£¬right£¬°üº¬right
+template <class T1, class T2>int findItem(T1 X[], const T2 a, int l, int r);//´ÓÊı×éXºÍYÖĞÉ¾³ıÔªËØa¡£lºÍrÊÇÏÂ±ê·¶Î§
+template <class Type>Type popItem(Type X[], int index, int r);//´ÓÊı×éXºÍYÖĞÉ¾³ıÔªËØa¡£lºÍrÊÇÏÂ±ê·¶Î§
 
 int main()
 {
@@ -140,8 +142,11 @@ int main()
 	PointX a, b;
 	double d;
 	Cpair2(X, Y, Z, PointX_NUM, a, b, d);
-
 	cout << "×î½üµã¶ÔÊÇ£º" << endl << a << "\t" << b << endl << "×î¶Ì¾àÀëÊÇ£º" << d << endl;
+
+
+	secondCpair2(X, Y, Z, PointX_NUM, a, b, d);
+	cout << "´Î×î½üµã¶ÔÊÇ£º" << endl << a << "\t" << b << endl << "´Î×î¶Ì¾àÀëÊÇ£º" << d << endl;
 	//for (int i = 0; i < PointX_NUM; i++)
 	//	cout << X[i] << ' ';
 	//cout << endl;
@@ -306,4 +311,76 @@ void closest(PointX X[], PointY Y[], PointY Z[], //XÒÔx×ø±êÅÅĞòµÄµã£¬YÒÔy×ø±êÅÅĞ
 			}
 		}
 	}
+}
+
+bool secondCpair2(PointX X[], PointY Y[], PointY Z[], int n, PointX &a, PointX &b, double& d)
+{
+	if (n < 2) return false;
+	sort(X, X + n);
+	sort(Y, Y + n);
+	closest(X, Y, Z, 0, n - 1, a, b, d);//XÒÔx×ø±êÅÅĞòµÄµã£¬YÒÔy×ø±êÅÅĞòµÄµã£¬Z´æ·Å·Ö½çÏß·¶Î§ÄÚµÄµã,l×ó¶Ëµã£¬rÓÒ¶Ëµã£¨°üº¬r£©£¬a,bÊÇÁ½¸ö×î½üµÄµã£¬d×î¶Ì¾àÀë
+
+	PointX a1, a2, b1, b2, tempX;
+	PointY tempY;
+	double d1, d2;
+	/*È¥µôa£¬¼ÆËã×î½üµã¶Ô*/
+	tempX=popItem(X, findItem(X, a, 0, n - 1), n - 1);
+	tempY=popItem(Y, findItem(Y, a, 0, n - 1), n - 1);
+	closest(X, Y, Z, 0, n - 2, a1, b2, d1);
+
+	/*a¼Ó»ØÈ¥*/
+	X[n - 1] = tempX;
+	Y[n - 1] = tempY;
+	sort(X, X + n);
+	sort(Y, Y + n);
+
+	/*È¥µôb£¬¼ÆËã×î½üµã¶Ô*/
+	popItem(X, findItem(X, b, 0, n - 1), n - 1);
+	popItem(Y, findItem(Y, b, 0, n - 1), n - 1);
+	closest(X, Y, Z, 0, n - 2, a2, b2, d2);
+
+	if (d1 < d2)
+	{
+		a = a1;
+		b = b1;
+		d = d1;
+	}
+	else
+	{
+		a = a2;
+		b = b2;
+		d = d2;
+	}
+
+
+	return true;
+}
+
+template <class Type>
+Type popItem(Type X[], int index ,int r)//´ÓÊı×éXºÍYÖĞÉ¾³ıÔªËØa¡£lºÍrÊÇÏÂ±ê·¶Î§
+{
+	/*int i = 0;
+	for (i = l; i <= r; i++)
+	{
+		if (X[i] == a)
+			break;
+	}*/
+	//int i=findItem(X, a, l, r);
+	Type ret = X[index];
+	for (int i = index; i < r; i++)
+	{
+		X[i] = X[i + 1];
+	}
+	return ret;
+}
+
+template <class T1,class T2>
+int findItem(T1 X[], const T2 a, int l, int r)//´ÓÊı×éXºÍYÖĞÉ¾³ıÔªËØa¡£lºÍrÊÇÏÂ±ê·¶Î§
+{
+	for (int i = l; i <= r; i++)
+	{
+		if (X[i].ID == a.ID)
+			return i;
+	}
+
 }
