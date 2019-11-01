@@ -87,11 +87,13 @@ PointY::~PointY()
 
 ostream & operator<<(ostream & os, const PointX & p)
 {
+	cout.precision(10); // ÉèÖÃÊä³ö¾«¶È
 	os << "ID" << p.ID << "(" << p.x << "," << p.y << ")";
 	return os;
 }
 ostream & operator<<(ostream & os, const PointY & p)
 {
+	cout.precision(10); // ÉèÖÃÊä³ö¾«¶È
 	os << "ID" << p.ID << "(" << p.x << "," << p.y << ")";
 	return os;
 }
@@ -237,6 +239,8 @@ void closest(PointX X[], PointY Y[], PointY Z[], //XÒÔx×ø±êÅÅÐòµÄµã£¬YÒÔy×ø±êÅÅÐ
 	/*¶àÓÚÈýµã£¬ÓÃ·ÖÖÎ·¨*/
 	int m = (l + r) / 2;//mÊÇÖÐÎ»Êý
 	int f = l, g = m + 1;//f,g·Ö±ðÊÇ×ó°ë¶ÎºÍÓÒ°ë¶ÎÏÂ±êÆðµã
+	PointY tempP[PointX_NUM];
+	int tempI = 0;
 	for (int i = l; i <= r; i++)//½«Y[]ÔÚ·Ö½çÏß£¨xÖÐÎ»Êý£©×ó±ßµÄ·ÅÔÚZ×ó°ë¶Î£¬·ñÔòÓÒ°ë¶Î//?????????????
 	{//Z[]´æ·Åp1µ½p2ÄÚ°´y×ø±êÅÅÐòµÄµã
 
@@ -244,15 +248,25 @@ void closest(PointX X[], PointY Y[], PointY Z[], //XÒÔx×ø±êÅÅÐòµÄµã£¬YÒÔy×ø±êÅÅÐ
 		else if(Y[i].x > X[m].x) Z[g++] = Y[i];
 		else//ÏàµÈ¡£·ÅÄÄ±ß¶¼ÐÐ
 		{
-			if (f <= m)//×ó±ß»¹Ã»Âú£¬·Å×ó±ß
-				Z[f++] = Y[i];
-			else if (g <= r)//×ó±ßÂúÁËÓÒ±ßÃ»Âú£¬·ÅÓÒ±ß
-				Z[g++] = Y[i];
-			else
-				cerr << "³öÎÊÌâÁË´ó¸ç";
+			tempP[tempI++] = Y[i];
+			//if (f <= m)//×ó±ß»¹Ã»Âú£¬·Å×ó±ß
+			//	Z[f++] = Y[i];
+			//else if (g <= r)//×ó±ßÂúÁËÓÒ±ßÃ»Âú£¬·ÅÓÒ±ß
+			//	Z[g++] = Y[i];
+			//else
+			//	cerr << "³öÎÊÌâÁË´ó¸ç";
 		}
 		//if (Y[i].x > m) Z[g++] = Y[i]; //Ô½½ç£¿
 		//else Z[f++] = Y[i];
+	}
+	for (int i = 0; i < tempI; i++)
+	{
+		if (f <= m)//×ó±ß»¹Ã»Âú£¬·Å×ó±ß
+			Z[f++] = tempP[i];
+		else if (g <= r)//×ó±ßÂúÁËÓÒ±ßÃ»Âú£¬·ÅÓÒ±ß
+			Z[g++] = tempP[i];
+		else
+			cerr << "³öÎÊÌâÁË´ó¸ç";
 	}
 	//for (int i = l; i <=r; i++)//²é¿´×îºóµÄfºÍg
 	//	cout << z[i] << ' ';
