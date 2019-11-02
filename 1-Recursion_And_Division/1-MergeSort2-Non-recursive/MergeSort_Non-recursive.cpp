@@ -23,17 +23,17 @@ int main()
 	int DD = DegreeOfDisorder(a, 0, MAX_LENTH - 1);
 	int ADD = AverageDegreeOfDisorder(a, 0, MAX_LENTH - 1);
 	cout << "ADD:" << ADD << "\tDD:" << DD << endl;
-	//cout << "待排序列：" << endl;
-	//for (int i = 0; i < MAX_LENTH; i++)
-	//	cout << a[i] << ' ';
-	//cout << endl;
+	cout << "待排序列：" << endl;
+	for (int i = 0; i < MAX_LENTH; i++)
+		cout << a[i] << ' ';
+	cout << endl;
 
 	int temp[MAX_LENTH];
 	MergeSort(a, temp, 0, MAX_LENTH - 1);
 
-	/*cout << "排序后的序列：" << endl;
+	cout << "排序后的序列：" << endl;
 	for (int i = 0; i < MAX_LENTH; i++)
-		cout << a[i] << ' ';*/
+		cout << a[i] << ' ';
 	delete[] a;
 
 	clock_t end_time = clock();
@@ -102,7 +102,7 @@ void GenerateRandomArray(int **a, int maxNum)//生成随机整数序列
 	vector<int> v;
 	for (int i = 0; i < maxNum; i++)
 		v.push_back(i);
-	random_shuffle(v.begin()+500, v.end());
+	random_shuffle(v.begin(), v.end());
 	*a = new int[maxNum];
 	for (int i = 0; i < maxNum; i++)
 		(*a)[i] = v[i];

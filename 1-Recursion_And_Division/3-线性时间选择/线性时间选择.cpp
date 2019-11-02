@@ -2,15 +2,16 @@
 #include<vector>
 #include<algorithm>
 #include<ctime>
+#include<fstream>
 using namespace std;
 
-#define MAX_LENTH 50 //´ıÅÅĞòÁĞ³¤¶È
-#define FIND_INDEX 25	//²éÕÒµÚFIND_INDEXĞ¡ÔªËØ£¬FIND_INDEX< MAX_LENTH 
+#define MAX_LENTH 1033 //´ıÅÅĞòÁĞ³¤¶È
+#define FIND_INDEX 1033	//²éÕÒµÚFIND_INDEXĞ¡ÔªËØ£¬FIND_INDEX< MAX_LENTH 
 
 template<class Type> Type RandomizedSelect(Type a[], int p, int r, int k);//ÔÚa[p:r]ÖĞÑ°ÕÒµÚkĞ¡ÔªËØ£¨Êı×éÏÂ±ê°üº¬r£©
 template<class Type> int Partition(Type a[], int p, int r);//Ñ¡ÔñÒ»¸öÔªËØ×÷Îª»ù×¼£¬½«Êı×é»®·ÖÎªÁ½²¿·Ö£¬×ó×Ó¶ÎÔªËØ¾ùĞ¡ÓÚ»ù×¼£¬ÓÒ×Ó¶ÎÔªËØ¾ù´óÓÚ»ù×¼¡£·µ»Ø»ù×¼index
 template<class Type> void SelectBenchmark(Type a[], int p, int r/*, int k*/);//½«ÖĞÎ»ÊıµÄÖĞÎ»Êı½»»»µ½Êı×éµÚÒ»¸öÎ»ÖÃ£¬Ö®ºóÒÔÊı×éµÚÒ»¸öÔªËØ×÷Îª»®·Ö»ù×¼
-void GenerateRandomArray(int **a, int maxNum);//Éú³ÉËæ»úÕûÊıĞòÁĞ
+
 
 int recursionCount = 0;
 
@@ -18,10 +19,23 @@ int main()
 {
 	clock_t start_time = clock();
 
-	int *a;
-	GenerateRandomArray(&a, MAX_LENTH);
+	/*int *a;
+	GenerateRandomArray(&a, MAX_LENTH);*/
 
-	int result = RandomizedSelect(a, 0, MAX_LENTH - 1, FIND_INDEX);
+	double *a = new double[MAX_LENTH];
+	ifstream fs("k-distANSI.txt", ios::in);
+	if (!fs) {
+		cout << "´ò¿ªÎÄ¼şÊ§°Ü"; return 0;
+	}
+	fs.seekg(0, fstream::beg);
+	int cnt = 0;
+	for (cnt = 0; fs >> a[cnt]; cnt++);
+	fs.close();
+	//for (int i = 0; i < cnt; i++)
+	//	cout << a[i] << ' ';
+	//cout << endl;
+
+	double result = RandomizedSelect(a, 0, cnt - 1, FIND_INDEX);
 
 	cout << "µÚ" << FIND_INDEX << "Ğ¡ÔªËØÊÇ£º" << result << endl;
 	cout << "µİ¹é²ãÊı£º" << recursionCount << endl;
@@ -107,14 +121,3 @@ void SelectBenchmark(Type a[], int p, int r/*, int k*/)//½«ÖĞÎ»ÊıµÄÖĞÎ»Êı½»»»µ½Ê
 }
 
 
-
-void GenerateRandomArray(int **a, int maxNum)//Éú³ÉËæ»úÕûÊıĞòÁĞ
-{
-	vector<int> v;
-	for (int i = 0; i < maxNum; i++)
-		v.push_back(i);
-	random_shuffle(v.begin(), v.end());
-	*a = new int[maxNum];
-	for (int i = 0; i < maxNum; i++)
-		(*a)[i] = v[i];
-}
