@@ -20,8 +20,8 @@ int main()
 		int(*b)[MAX_ARRAY_LENTH] = new int[x_len][MAX_ARRAY_LENTH];
 		LCSLength(x_len, y_len, x, y, c, b);
 		LCS(x_len, y_len, x, b);
-		//delete[]c;
-		//delete[]b;
+		delete[]c;
+		delete[]b;
 	}
 	return 0;
 }

@@ -18,5 +18,8 @@
     <ClCompile Include="凸多边形最优三角剖分.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="凸多边形最优三角剖分2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

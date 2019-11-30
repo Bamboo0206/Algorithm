@@ -18,5 +18,8 @@
     <ClCompile Include="01背包.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="01背包-仅返回最大价值.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
