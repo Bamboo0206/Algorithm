@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-最大子段和", "2-Dyna
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "4-01背包", "2-Dynamic_Programming\4-01背包\4-01背包.vcxproj", "{D20003D5-5B8F-49A2-9189-5FCBA50BB726}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3-2凸多边形次优三角剖分", "2-Dynamic_Programming\3-2凸多边形次优三角剖分\3-2凸多边形次优三角剖分.vcxproj", "{AD5E4779-4168-4D5B-8D24-3EA3786AA874}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -125,6 +127,14 @@ Global
 		{D20003D5-5B8F-49A2-9189-5FCBA50BB726}.Release|x64.Build.0 = Release|x64
 		{D20003D5-5B8F-49A2-9189-5FCBA50BB726}.Release|x86.ActiveCfg = Release|Win32
 		{D20003D5-5B8F-49A2-9189-5FCBA50BB726}.Release|x86.Build.0 = Release|Win32
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874}.Debug|x64.ActiveCfg = Debug|x64
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874}.Debug|x64.Build.0 = Debug|x64
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874}.Debug|x86.ActiveCfg = Debug|Win32
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874}.Debug|x86.Build.0 = Debug|Win32
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874}.Release|x64.ActiveCfg = Release|x64
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874}.Release|x64.Build.0 = Release|x64
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874}.Release|x86.ActiveCfg = Release|Win32
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +151,7 @@ Global
 		{E81E25E2-F0E4-45E9-9868-9EE8B64C9549} = {7034C5C0-F5C6-433E-BD71-5CF41D09A147}
 		{F25BBF9B-A6E3-45D6-9075-45A9D044D084} = {7034C5C0-F5C6-433E-BD71-5CF41D09A147}
 		{D20003D5-5B8F-49A2-9189-5FCBA50BB726} = {7034C5C0-F5C6-433E-BD71-5CF41D09A147}
+		{AD5E4779-4168-4D5B-8D24-3EA3786AA874} = {7034C5C0-F5C6-433E-BD71-5CF41D09A147}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6528FF94-6BBC-403E-9926-AEB8682A9ECF}

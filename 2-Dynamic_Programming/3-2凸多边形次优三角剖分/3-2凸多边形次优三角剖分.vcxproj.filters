@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="凸多边形最优三角剖分.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="凸多边形最优三角剖分2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="凸多边形最优三角剖分3.cpp">
+    <ClCompile Include="次优三角剖分.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
