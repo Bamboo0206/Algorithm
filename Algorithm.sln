@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Greedy", "3-Greedy", "{4C
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3-Dijkstra单源最短路径", "3-Greedy\3-Dijkstra单源最短路径\3-Dijkstra单源最短路径.vcxproj", "{95A88920-0CFF-412D-A521-84DE8121ABCB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "4-Minimum_Spanning_Tree", "3-Greedy\4-Minimum_Spanning_Tree\4-Minimum_Spanning_Tree.vcxproj", "{325FA36C-E0A8-46A3-BF8E-06AE032757DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -147,6 +149,14 @@ Global
 		{95A88920-0CFF-412D-A521-84DE8121ABCB}.Release|x64.Build.0 = Release|x64
 		{95A88920-0CFF-412D-A521-84DE8121ABCB}.Release|x86.ActiveCfg = Release|Win32
 		{95A88920-0CFF-412D-A521-84DE8121ABCB}.Release|x86.Build.0 = Release|Win32
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF}.Debug|x64.ActiveCfg = Debug|x64
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF}.Debug|x64.Build.0 = Debug|x64
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF}.Debug|x86.ActiveCfg = Debug|Win32
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF}.Debug|x86.Build.0 = Debug|Win32
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF}.Release|x64.ActiveCfg = Release|x64
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF}.Release|x64.Build.0 = Release|x64
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF}.Release|x86.ActiveCfg = Release|Win32
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +175,7 @@ Global
 		{D20003D5-5B8F-49A2-9189-5FCBA50BB726} = {7034C5C0-F5C6-433E-BD71-5CF41D09A147}
 		{AD5E4779-4168-4D5B-8D24-3EA3786AA874} = {7034C5C0-F5C6-433E-BD71-5CF41D09A147}
 		{95A88920-0CFF-412D-A521-84DE8121ABCB} = {4CDCC82F-346E-4458-BBF5-4B6EF89F737C}
+		{325FA36C-E0A8-46A3-BF8E-06AE032757DF} = {4CDCC82F-346E-4458-BBF5-4B6EF89F737C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6528FF94-6BBC-403E-9926-AEB8682A9ECF}
