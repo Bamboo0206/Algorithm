@@ -5,9 +5,9 @@ using namespace std;
 #define MAX_NODE_NUM 22
 #define INFINITE 99999
 
-void Read_Matrix(double G[MAX_NODE_NUM][MAX_NODE_NUM], int node_num);
-void Dijkstra(double G[MAX_NODE_NUM][MAX_NODE_NUM], int node_num, int path[], double dist[], int src);
-void output(int node_num, int path[], double dist[], int src, int dest);
+void Read_Matrix(double G[MAX_NODE_NUM][MAX_NODE_NUM], int node_num); //读邻接矩阵
+void Dijkstra(double G[MAX_NODE_NUM][MAX_NODE_NUM], int node_num, int path[], double dist[], int src);//Dijkstra算法实现，求单源最短路径
+void output(int node_num, int path[], double dist[], int src, int dest);//输出结果
 
 int main()
 {
