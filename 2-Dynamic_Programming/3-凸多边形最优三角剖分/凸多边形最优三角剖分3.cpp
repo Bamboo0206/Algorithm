@@ -73,7 +73,7 @@ double MinWeightTriangulation(int n, double **t, int **s)
 			for (int k = i + 1; k < j; k++)
 			{
 				//将链ij划分为( A[i:k] )* (A[k+1:j])     
-				double u = t[i][k] + t[k + 1][j] + Weight(i - 1, k, j);
+				double u = t[i][k] + t[k + 1][j] + Weight(i - 1, k, j);//记在k划分时的结果
 				if (u < t[i][j])
 				{
 					t[i][j] = u;

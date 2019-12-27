@@ -34,7 +34,7 @@ int main()
 int package(int M, int N, int *w, int *d, int *F)//有N 件物品和一个容积为 M 的背包。第 i 件物品的体积是 w[i]，价值是 d[i]
 ////用F[i][j] 表示取前 i 种物品，使它们总体积不超过 j 的最优取法取得的价值总和。要求 F[N][M]
 {
-	for (int j = 0; j <= M; j++)//边界条件
+	for (int j = 0; j <= M; j++)//边界条件 
 	{
 		if (w[0] <= j)
 		{
